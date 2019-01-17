@@ -29,60 +29,26 @@
 <!-- Timer/progress bar: Define the presentation duration using "data-duration" in minutes. -->
 <body class="en" data-duration="360">
 
-  <!-- Welcome slide -->
-  <header class="slide">
-    <img class="logo" src="framework/img/logo-llc-white.png" alt="Ladies Learning Code logo">
-    <h1>Welcome to Ladies Learning Code!</h1>
-
-    <div class="instructions">
-      <!-- Add wifi info here -->
-      <!-- <h2>Get Connected</h2>
-      <p>Network: <br>
-      Password: </p>  -->
-
-
-      <h2>Download</h2>
-      <p>Learner files: <a href="https://github.com/ladieslearningcode/llc-intro-to-python/archive/master.zip">http://bitly.com/llc-python</a> (zip file)</p>
-      <ul>
-        <li>unzip the learner file download (<em>extract all</em> if you’re on a PC)</li>
-        <li>open <strong>slides.html</strong> in your browser to view the presentation</li>
-      </ul>
-      <p>Install Python 2.7.x</p>
-      <ul>
-        <li>Windows - <a href="https://www.python.org/downloads/windows/">https://www.python.org/downloads/windows/</a></li>
-        <li>Mac - pre-installed. Go to <strong>Applications &gt; Utilities &gt; Terminal</strong><br>
-          In the terminal window type "python" to confirm installation.</li>
-      </ul>
-      <p>PyCharm Educational Edition<br>
-        <a href="https://www.jetbrains.com/pycharm-educational">https://www.jetbrains.com/pycharm-educational</a>
-      </p>
-    </div>
-    <div class="sponsor">
-      <p>In partnership with
-      <img src="framework/img/telus-logo-white.svg" alt="Telus logo"></p>
-    </div>
-  </header>
-
+  
   <main>
     <!-- Instructor info -->
     <section class="slide intro">
-      <img class="logo" src="framework/img/logo-llc-white.png" alt="Ladies Learning Code logo">
+      <!-- <img class="logo" src="framework/img/logo-llc-white.png" alt="Ladies Learning Code logo"> -->
       <div class="info">
         <h1 class="heading-bg">
-          <span>Data Insights with Python for Beginners</span>
+          <span>Building a Basic AWS Lambda Function Without Frameworks</span>
         </h1>
         <!-- TODO: Fill in instructor details -->
-      <!--   <h2><span>with</span> Instructor Name</h2>
+      <h2><span>with</span> Adam Parkin</h2>
 
-      <img class="instructor-img" src="http://cl.ly/image/0r3Q3H110G36/profile-generic.jpg" alt="instructor name">
+      <img class="instructor-img" src="https://www.codependentcodr.com/static/imgs/me4.jpg" alt="Adam Parkin">
       <ul>
-        <li><i class="fa fa-envelope"></i><a href="mailto:">hello@email.com</a></li>
-        <li><i class="fa fa-desktop"></i><a href="#">mywebsite.com</a></li>
-        <li><i class="fa fa-twitter"></i><a href="http://twitter.com/">@twitter</a></li>
-      </ul> -->
+        <li><i class="fa fa-envelope"></i><a href="mailto:codependentcodr@gmail.com">codependentcodr@gmail.com</a></li>
+        <li><i class="fa fa-desktop"></i><a href="https://www.codependentcodr.com/">www.codependentcodr.com</a></li>
+        <li><i class="fa fa-twitter"></i><a href="http://twitter.com/">@codependentcodr</a></li>
+      </ul>
         <div class="sponsor">
-          <p>In partnership with</p>
-          <img src="framework/img/telus-logo-white.svg" alt="Telus logo">
+          <p>Presented at VanPy in Jan 2019</p>
         </div>
       </div>
     </section>
@@ -104,40 +70,65 @@
       <script type="text/template">
       ## Agenda
 
-      ###Morning
+      * Serverless Computing, what the what?
+      * But I thought this was a Python Meetup, not an AWS one, aka Where does Python Fit In?
+      * Python and AWS Lambda, How Do?
+      * Serving Some Stuff By HTTP (aka, Oh yeah, I need API Gateway don't I?)
+      * How Do I Test This Stuff? (aka, SoC is useful)
+      * Ok cool, but Python is Batteries Included/I Want Serving HTML on the Cheap
+      * Awesome, now if I just pull in lxml, wait what?
+      * Ok, but there's Frameworks for this...
+      * Neato, What Else Can You Do? (aka ok, give me 5 minutes of plugging AWS)
 
-      * Types
-      * Variables
-      * Conditionals &amp; Logic
-      * Reading a file
-      * For loops
+      ##BUT
 
-      ###Afternoon
-
-      * Libraries
-      * Dictionaries
-      * Finding &amp; counting patterns
-      * Final Project
+      * Please, let's make this interactive, ask questions!  Stop me at any time!
       </script>
     </section>
 
     <section class="slide" data-markdown>
       <script type="text/template">
-        ## What is programming?
+        ## Serverless Computing, what the what?
+        * Also known as "Functions as a Service"
+        * You give the service a function, and it's responsible for managing the box it runs on
+        * All the Cloud Peeps have an offering
 
-        * Programming is basically giving instructions to your computer in a form that it can understand
-        * Computers need *very specific* instructions
-        * Programming languages have syntax, just like human languages have grammar rules
+        ### Neat, but Why's it Useful?
+        * no infrastructure to manage
+        * easy to get up and running
+        * cheap! (esp. for low use scenarios -- AWS Lambda is 1M calls for free/month)
+        * "infinitely" scalable
 
-        <br>
-        ### Why Python Is Awesome
+        ### Common Uses
+        * Automated alerts (ex: "hey my box ran out of disk space, buzz Slack")
+        * Image/Video processing (ex: "whenever a video is put into this S3 bucket, transcode it to different formats")
+        * Automated cron jobs without needing to find a box to put it on
+        * "Glue"
+        * REST API's
 
-        *   Free!
-        *   Open source
-        *   Write once, run anywhere
-        *   Great community
-        *   The syntax looks similar to English
-        *   Meaningful errors, easy to debug
+      </script>
+    </section>
+
+    <section class="slide" data-markdown>
+      <script type="text/template">
+        ## Serverless Computing, what the what? (cont)
+      
+        ### Ok, but why does it Suck?
+        * it's a different way of approaching web development
+        * thinking more in terms of functions than applications
+        * start performance (ie "cold hits")
+
+        ![](framework/img/workshop/lambdaiscgibin.jpg)
+      </script>
+    </section>
+
+    <section class="slide" data-markdown>
+      <script type="text/template">
+        ## But I thought this was a Python Meetup, not an AWS one, aka Where does Python Fit In?
+      
+        * Can write Lambda's in a number of languages (Javascript, Java, etc), but also Python
+        * Python has been supported for as long as I've known about Lambda (launched in 2014, I heard about it ~2015-ish?)
+        * Some of the docs are a bit weak for Python examples....
 
       </script>
     </section>

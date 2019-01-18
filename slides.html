@@ -77,8 +77,9 @@
       * Serving Some Stuff By HTTP
         * aka, Oh yeah, I need API Gateway don't I?
       * How Do I Test This Stuff?
-        * aka, SoC is useful
-      * Ok cool, but Python is Batteries Included/I Want Serving HTML on the Cheap
+        * aka, SRP is useful
+      * Ok cool, but Python is Batteries included
+        * How Do Pip Install?
       * Awesome, now if I just pull in lxml, wait what?
       * Ok, but there's Frameworks for this...
 
@@ -135,6 +136,174 @@
 
       </script>
     </section>
+
+    <section class="slide" data-markdown>
+      <script type="text/template">
+        ## Python and AWS Lambda, How Do?
+      
+        * Explicabo quia amet qui a maxime.
+        * Aliquid fugit autem dignissimos.
+        * Adipisci asperiores ut impedit consequatur ut quo deserunt cumque assumenda.
+        * Nostrum sed iusto ut non animi atque.
+        * Vitae cupiditate doloremque consectetur non aut nobis reprehenderit eligendi officiis.
+
+      </script>
+    </section>
+
+    <section class="slide" data-markdown>
+      <script type="text/template">
+        ## Serving Some Stuff By HTTP
+
+        ### aka, Oh yeah, I need API Gateway don't I?
+      
+        * Explicabo quia amet qui a maxime.
+        * Aliquid fugit autem dignissimos.
+        * Adipisci asperiores ut impedit consequatur ut quo deserunt cumque assumenda.
+        * Nostrum sed iusto ut non animi atque.
+        * Vitae cupiditate doloremque consectetur non aut nobis reprehenderit eligendi officiis.
+
+      </script>
+    </section>
+
+    <section class="slide" data-markdown>
+      <script type="text/template">
+        ## How Do I Test This Stuff?
+
+        ### aka, Single Responsibility Principle (SRP) is useful
+      
+        * Explicabo quia amet qui a maxime.
+        * Aliquid fugit autem dignissimos.
+        * Adipisci asperiores ut impedit consequatur ut quo deserunt cumque assumenda.
+        * Nostrum sed iusto ut non animi atque.
+        * Vitae cupiditate doloremque consectetur non aut nobis reprehenderit eligendi officiis.
+
+        ![Edsger W. Dijkstra](./framework/img/workshop/unclebob.jpg)
+
+      </script>
+    </section>
+
+    <section class="slide" data-markdown>
+      <script type="text/template">
+        ## Ok cool, but Python is Batteries Included
+      
+        ### How Do Pip Install?
+
+        * Explicabo quia amet qui a maxime.
+        * Aliquid fugit autem dignissimos.
+        * Adipisci asperiores ut impedit consequatur ut quo deserunt cumque assumenda.
+        * Nostrum sed iusto ut non animi atque.
+        * Vitae cupiditate doloremque consectetur non aut nobis reprehenderit eligendi officiis.
+
+      </script>
+    </section>
+
+    <section class="slide" data-markdown>
+      <script type="text/template">
+        ## Awesome, now if I just pull in lxml, wait what?
+
+        * demo having lxml and once that gets pushed to Lambada unhappiness happens
+
+        ### What happened?
+
+        * Recall: your code is thrown into a Docker image
+        * That image targets a particular platform
+        * If a package has compiled dependencies (ex: wheels & such), those are platform-specific
+        * Ruh-roh, how do I get that sweet, sweet lxml action?
+
+        ![](framework/img/workshop/docker-all-the-things.png)
+
+      </script>
+    </section>
+
+    <section class="slide" data-markdown>
+      <script type="text/template">
+        ## Awesome, now if I just pull in lxml, wait what? (cont)
+
+        * If we had a Docker image that was like what Lambda uses, we could build our dependencies there
+
+        ```
+        FROM amazonlinux:latest
+
+        # Inspired by https://github.com/tomelliff/py-s3-sftp-bridge/blob/master/Dockerfile
+        
+        RUN yum install -y zip
+        RUN yum install -y python3
+        RUN curl -O -s https://bootstrap.pypa.io/get-pip.py && python3 get-pip.py
+        
+        WORKDIR /working
+        COPY requirements.txt /working
+        RUN pip3 install -r requirements.txt -t .
+
+        # copy your source files....
+        
+        RUN zip -r lambda.zip *
+        ```
+
+      </script>
+    </section>
+
+    <section class="slide" data-markdown>
+      <script type="text/template">
+        ## Awesome, now if I just pull in lxml, wait what? (cont)
+
+        * Now we can build it & zip it:
+
+        ```
+        $ docker build -t mylambdafunction:latest .
+        Sending build context to Docker daemon  8.746MB
+        Step 1/10 : FROM amazonlinux:latest
+        ..... much output ....
+
+        $ mkdir BUILD
+        $ docker run -v $(pwd)/BUILD:/output --rm streakanalyzer:latest cp lambda.zip /output
+        ```
+
+        * We can then upload `BUILD/lambda.zip` to AWS
+      </script>
+    </section>
+
+    <section class="slide" data-markdown>
+      <script type="text/template">
+        ## Ok, but there's Frameworks for this...
+
+        At the end of the day they abstract away the whole Lambda/API Gateway setup
+      
+        ### Serverless
+        * https://www.serverless.com
+        * Feels a bit "Node-orientated", though Python is supported
+        * Almost every single Medium post on Lambda uses this framework
+
+        ### Zappa
+        * https://www.zappa.io/
+        * Allows one to use Lambada to host a WSGI based Python app
+
+      </script>
+    </section>
+
+    <!-- Last slide -->
+
+    <section class="slide last">
+      <h2>Thank you!</h2>
+
+      <h2 class="heading-bg">
+        <span>Building a Basic AWS Lambda</span><br>
+        <span>Function Without Frameworks</span>
+      </h2>
+      <h3><span>with</span> Adam Parkin</h3>
+
+      <img class="instructor-img" src="https://www.codependentcodr.com/static/imgs/me4.jpg" alt="Adam Parkin">
+      <ul>
+        <li><i class="fa fa-envelope"></i><a href="mailto:codependentcodr@gmail.com">codependentcodr@gmail.com</a></li>
+        <li><i class="fa fa-desktop"></i><a href="https://www.codependentcodr.com/">www.codependentcodr.com</a></li>
+        <li><i class="fa fa-twitter"></i><a href="http://twitter.com/">@codependentcodr</a></li>
+        <li><i class="fa fa-github"></i><a href="https://github.com/pzelnip/VanPyLambadaPresentation">Slides & Notes</a></li>
+      </ul>
+
+      <p class="attribution">Slide presentation based upon a <a href="https://github.com/ladieslearningcode/llc-intro-to-python">slide deck from Ladies Learning Code</a>, 
+        <br>which was based on
+         <a href="https://github.com/LeaVerou/csss">Lea Verou&rsquo;s CSS-based SlideShow System</a> and <a href="http://lab.hakim.se/reveal-js/">reveal.js</a>.</p>
+    </section>
+
 
     <section class="slide who-uses" data-markdown>
       <script type="text/template">
@@ -1455,29 +1624,6 @@ print number_of_todos
       </script>
     </section>
 
-<!-- Last slide -->
-
-    <section class="slide last">
-      <h2>Thank you!</h2>
-
-      <h2 class="heading-bg">
-        <span>Building a Basic AWS Lambda</span><br>
-        <span>Function Without Frameworks</span>
-      </h2>
-      <h3><span>with</span> Adam Parkin</h3>
-
-      <img class="instructor-img" src="https://www.codependentcodr.com/static/imgs/me4.jpg" alt="Adam Parkin">
-      <ul>
-        <li><i class="fa fa-envelope"></i><a href="mailto:codependentcodr@gmail.com">codependentcodr@gmail.com</a></li>
-        <li><i class="fa fa-desktop"></i><a href="https://www.codependentcodr.com/">www.codependentcodr.com</a></li>
-        <li><i class="fa fa-twitter"></i><a href="http://twitter.com/">@codependentcodr</a></li>
-        <li><i class="fa fa-github"></i><a href="https://github.com/pzelnip/VanPyLambadaPresentation">Slides & Notes</a></li>
-      </ul>
-
-      <p class="attribution">Slide presentation based upon a <a href="https://github.com/ladieslearningcode/llc-intro-to-python">slide deck from Ladies Learning Code</a>, 
-        <br>which was based on
-         <a href="https://github.com/LeaVerou/csss">Lea Verou&rsquo;s CSS-based SlideShow System</a> and <a href="http://lab.hakim.se/reveal-js/">reveal.js</a>.</p>
-    </section>
 
   </main><!-- cls main section -->
 

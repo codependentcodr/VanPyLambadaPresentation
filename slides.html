@@ -126,6 +126,7 @@
         * thinking more in terms of functions than applications
         * start performance (ie "cold hits")
 
+        <!-- .element: class="delayed" -->
         ![](framework/img/workshop/lambdaiscgibin.jpg)
       </script>
     </section>
@@ -138,6 +139,7 @@
         * Can write Lambda's in a number of languages (Javascript, Java, etc), but also Python
         * Python has been supported for as long as I've known about Lambda (launched in 2014, I heard about it ~2015-ish?)
         * Some of the docs are a bit weak for Python examples....
+        <!-- .element: class="delayed" -->
 
       </script>
     </section>
@@ -147,20 +149,24 @@
         ## Python and AWS Lambda, How Do?
       
         * Create your function
+        <!-- .element: class="delayed" -->
         * Run it.
+        <!-- .element: class="delayed" -->
         * Profit!
-
+        <!-- .element: class="delayed" -->
+        
+        <!-- .element: class="delayed" -->
         Let's try an example...
-
+        
       </script>
     </section>
-
+    
     <section class="slide" data-markdown>
       <script type="text/template">
         ## Serving Some Stuff By HTTP
-
+        
         ### aka, Oh yeah, I need API Gateway don't I?
-      
+        
         * Yes. Yes you do.
         * We want our Lambda to be on the web.
         * Ie we want HTTP requests to trigger the Lambda to run
@@ -206,29 +212,32 @@
       <script type="text/template">
         ## Awesome, now if I just pull in lxml, wait what?
 
-        * demo having lxml and once that gets pushed to Lambada unhappiness happens
-
         ### What happened?
 
         * Recall: your code is thrown into a Docker image
+        <!-- .element: class="delayed" -->
         * That image targets a particular platform
+        <!-- .element: class="delayed" -->
         * If a package has compiled dependencies (ex: wheels & such), those are platform-specific
+        <!-- .element: class="delayed" -->
         * Ruh-roh, how do I get that sweet, sweet lxml action?
-
+        <!-- .element: class="delayed" -->
+        
+        <!-- .element: class="delayed" -->
         ![](framework/img/workshop/docker-all-the-things.png)
-
+        
       </script>
     </section>
-
+    
     <section class="slide" data-markdown>
       <script type="text/template">
         ## Awesome, now if I just pull in lxml, wait what? (cont)
-
+        
         * If we had a Docker image that was like what Lambda uses, we could build our dependencies there
-
+        
         ```
         FROM amazonlinux:latest
-
+        
         # Inspired by https://github.com/tomelliff/py-s3-sftp-bridge/blob/master/Dockerfile
         
         RUN yum install -y zip
@@ -238,12 +247,13 @@
         WORKDIR /working
         COPY requirements.txt /working
         RUN pip3 install -r requirements.txt -t .
-
+        
         # copy your source files....
         
         RUN zip -r lambda.zip *
         ```
-
+        <!-- .element: class="delayed" -->
+        
       </script>
     </section>
 
@@ -263,6 +273,7 @@
         $ docker run -v $(pwd)/BUILD:/output --rm streakanalyzer:latest cp lambda.zip /output
         ```
 
+        <!-- .element: class="delayed" -->
         * We can then upload `BUILD/lambda.zip` to AWS
       </script>
     </section>
@@ -272,7 +283,9 @@
           ## Reinventing the Wheel, why?
 
           * Sometimes this is a great way to learn
-
+          <!-- .element: class="delayed" -->
+          
+          <!-- .element: class="delayed" -->
           ![](framework/img/workshop/reinventingTweet.png)
           https://twitter.com/BunkyFob/status/1059960013689516032
         </script>
@@ -285,6 +298,7 @@
         At the end of the day they abstract away the whole Lambda/API Gateway setup
       
         ### Serverless
+        
         * https://www.serverless.com
         * Feels a bit "Node-orientated", though Python is supported
         * Almost every single Medium post on Lambda uses this framework
@@ -293,6 +307,7 @@
         * https://www.zappa.io/
         * Allows one to use Lambda to host a WSGI based Python app
 
+        <!-- .element: class="delayed" -->
         As well, "infrastructure as code" tools like Cloudformation or Terraform can be very useful.
       </script>
     </section>

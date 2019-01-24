@@ -131,17 +131,6 @@
     </section>
 
     <section class="slide" data-markdown>
-        <script type="text/template">
-          ## Reinventing the Wheel, why?
-
-          * Sometimes this is a great way to learn
-
-          ![](framework/img/workshop/reinventingTweet.png)
-          https://twitter.com/BunkyFob/status/1059960013689516032
-        </script>
-    </section>  
-
-    <section class="slide" data-markdown>
       <script type="text/template">
         ## But I thought this was a Python Meetup, not an AWS one
       
@@ -157,11 +146,11 @@
       <script type="text/template">
         ## Python and AWS Lambda, How Do?
       
-        * Explicabo quia amet qui a maxime.
-        * Aliquid fugit autem dignissimos.
-        * Adipisci asperiores ut impedit consequatur ut quo deserunt cumque assumenda.
-        * Nostrum sed iusto ut non animi atque.
-        * Vitae cupiditate doloremque consectetur non aut nobis reprehenderit eligendi officiis.
+        * Create your function
+        * Run it.
+        * Profit!
+
+        Let's try an example...
 
       </script>
     </section>
@@ -172,11 +161,11 @@
 
         ### aka, Oh yeah, I need API Gateway don't I?
       
-        * Explicabo quia amet qui a maxime.
-        * Aliquid fugit autem dignissimos.
-        * Adipisci asperiores ut impedit consequatur ut quo deserunt cumque assumenda.
-        * Nostrum sed iusto ut non animi atque.
-        * Vitae cupiditate doloremque consectetur non aut nobis reprehenderit eligendi officiis.
+        * Yes. Yes you do.
+        * We want our Lambda to be on the web.
+        * Ie we want HTTP requests to trigger the Lambda to run
+        * API Gateway fills that role.
+        * Simple example...
 
       </script>
     </section>
@@ -279,6 +268,17 @@
     </section>
 
     <section class="slide" data-markdown>
+        <script type="text/template">
+          ## Reinventing the Wheel, why?
+
+          * Sometimes this is a great way to learn
+
+          ![](framework/img/workshop/reinventingTweet.png)
+          https://twitter.com/BunkyFob/status/1059960013689516032
+        </script>
+    </section>  
+
+    <section class="slide" data-markdown>
       <script type="text/template">
         ## Ok, but there's Frameworks for this...
 
@@ -291,8 +291,9 @@
 
         ### Zappa
         * https://www.zappa.io/
-        * Allows one to use Lambada to host a WSGI based Python app
+        * Allows one to use Lambda to host a WSGI based Python app
 
+        As well, "infrastructure as code" tools like Cloudformation or Terraform can be very useful.
       </script>
     </section>
 

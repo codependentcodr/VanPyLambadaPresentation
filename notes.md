@@ -2,28 +2,6 @@
 
 Presentation for VanPy in Jan 2019: https://www.meetup.com/vanpyz/events/257223309/
 
-## Outline
-
-### What is Lambda and Serverless Computing?
-
-* General overview of the idea of serverless, and how AWS Lambda is one such provider
-  * others include Azure Functions and Google Cloud Functions
-* Benefits:
-  * no infrastructure to manage
-  * easy to get up and running
-  * cheap!
-* Drawbacks:
-  * it's a different way of approaching web development
-  * thinking more in terms of functions than applications
-* Great use cases:
-  * "infinitely" scalable REST API's
-  * weird periodic cron-job like things in the cloud
-  * Alexa skills
-
-### Lambda and Python
-
-* It works!
-
 ### Random thoughts
 
 * The role of API gateway
@@ -34,13 +12,9 @@ Presentation for VanPy in Jan 2019: https://www.meetup.com/vanpyz/events/2572233
 * story of recursive lambda, and surprises on your bill
 * how to test, separation of lambda interface with rest of your code
 
-
 ### Gotchas
 
 * Compiled dependencies
-
-
-
 
 ## What I Submitted
 
@@ -65,3 +39,53 @@ Would include:
 The key idea is to approach this as an example of demystifying serverless
 computing, as everything will be pure Python with no reliance on frameworks like
 Zappa or Serverless.com"
+
+
+## Presentation Notes
+
+Notes on creating lambda:
+
+
+create lambda
+Don't author from scratch, instead blueprint, and "hello-world-python3"
+
+Do simple example of the boilerplate it gives you
+Do the test there
+
+Go through fields,
+
+* env vars
+* execution role is permissions
+* Basic settings -- memory and timeout, these are important
+
+Illustrate how writing inline sucks.
+Demonstrate taking code putting into local editor, saving file, zipping it & uploading.
+Rename the module, function, etc.
+
+Nothign magic, we could return whatever we want, like some raw html
+-- do that.
+-- make it "dynamic", embed the local time or something
+
+Ok, note that this is plain python so you can run locally
+
+run python, import function & run in the interpreter.
+Now flesh out into ifmain block & run as cmd line script
+Can we still upload to lambda?
+Yes, exact same code, can run as a local cmd line script, or upload to lambda.  Cool!
+
+
+Ok, now API gateway since we want users to be able to hit it on the web
+
+Proxy integration yes.
+Run it after doing that and notice you get error "Execution failed due to configuration error: Malformed Lambda proxy response"
+This is because proxy response means your lambda has to return specifically formatted json.
+
+```python
+    return {
+        "statusCode": 200,
+        "headers": {"Content-Type": "text/html"},
+        "body": html,
+    }
+```
+
+https://aws.amazon.com/premiumsupport/knowledge-center/malformed-502-api-gateway/

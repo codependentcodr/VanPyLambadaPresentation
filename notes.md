@@ -89,3 +89,10 @@ This is because proxy response means your lambda has to return specifically form
 ```
 
 https://aws.amazon.com/premiumsupport/knowledge-center/malformed-502-api-gateway/
+
+
+Now we want depedencies
+
+- use jinja to templatize the html returned
+- install jinja2 locally & show running locally works
+- 

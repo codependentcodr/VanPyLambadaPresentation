@@ -7,23 +7,27 @@ from datetime import datetime
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 
-def lambda_handler(event, context):
+def generate_html():
     env = Environment(
         loader=FileSystemLoader("."),
         autoescape=select_autoescape(["html", "xml"]),
     )
-
     template = env.get_template("welcome.jinja2")
-    
+    return template.render(the_time=datetime.now())
+
+
+def lambda_handler(event, context):
+    html = generate_html()
+
     return {
         "statusCode": 200,
         "headers": {"Content-Type": "text/html"},
-        "body": template.render(the_time=datetime.now()),
+        "body": html,
     }
 
 
 def main():
-    print(lambda_handler(None, None))
+    print(generate_html())
 
 
 if __name__ == "__main__":

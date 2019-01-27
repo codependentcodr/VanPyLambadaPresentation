@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -27,9 +28,10 @@
 </head>
 
 <!-- Timer/progress bar: Define the presentation duration using "data-duration" in minutes. -->
+
 <body class="en" data-duration="360">
 
-  
+
   <main>
     <!-- Instructor info -->
     <section class="slide intro">
@@ -38,16 +40,17 @@
         <h1 class="heading-bg">
           <span>Building a Basic AWS Lambda Function Without Frameworks</span>
         </h1>
-      <h2><span>with</span> Python</h2>
+        <h2><span>with</span> Python</h2>
 
-      <img class="instructor-img" src="https://www.codependentcodr.com/static/imgs/me4.jpg" alt="Adam Parkin">
-      <ul>
-        <ul>Adam Parkin</ul>
-        <li><i class="fa fa-envelope"></i><a href="mailto:codependentcodr@gmail.com">codependentcodr@gmail.com</a></li>
-        <li><i class="fa fa-desktop"></i><a href="https://www.codependentcodr.com/">www.codependentcodr.com</a></li>
-        <li><i class="fa fa-twitter"></i><a href="http://twitter.com/">@codependentcodr</a></li>
-        <li><i class="fa fa-github"></i><a href="https://github.com/pzelnip/VanPyLambadaPresentation">Slides & Notes - https://bit.ly/2S5Wibc</a></li>
-      </ul>
+        <img class="instructor-img" src="https://www.codependentcodr.com/static/imgs/me4.jpg" alt="Adam Parkin">
+        <ul>
+          <ul>Adam Parkin</ul>
+          <li><i class="fa fa-envelope"></i><a href="mailto:codependentcodr@gmail.com">codependentcodr@gmail.com</a></li>
+          <li><i class="fa fa-desktop"></i><a href="https://www.codependentcodr.com/">www.codependentcodr.com</a></li>
+          <li><i class="fa fa-twitter"></i><a href="http://twitter.com/">@codependentcodr</a></li>
+          <li><i class="fa fa-github"></i><a href="https://github.com/pzelnip/VanPyLambadaPresentation">Slides & Notes
+              - https://bit.ly/2S5Wibc</a></li>
+        </ul>
         <div class="sponsor">
           <p>Presented at VanPy in Jan 2019</p>
         </div>
@@ -194,6 +197,8 @@
         * Then you can unit test that stuff in isolation to your hearts content using all the normal tools you use.
 
         ![Uncle Bob Martin](./framework/img/workshop/unclebob.jpg)
+        
+        https://blog.cleancoder.com/uncle-bob/2014/05/08/SingleReponsibilityPrinciple.html
 
       </script>
     </section>
@@ -237,13 +242,13 @@
     </section>
 
     <section class="slide" data-markdown>
-        <script type="text/template">
+      <script type="text/template">
           ## Awesome, now if I just pull in lxml, wait what? (cont)
           
           ![](framework/img/workshop/docker-all-the-things.png)
       </script>
     </section>
-    
+
     <section class="slide" data-markdown>
       <script type="text/template">
         ## Awesome, now if I just pull in lxml, wait what? (cont)
@@ -267,6 +272,9 @@
         
         RUN zip -r lambda.zip *
         ```
+        <!-- .element: class="delayed" -->
+        
+        Save this as a Dockerfile
         <!-- .element: class="delayed" -->
         
       </script>
@@ -294,7 +302,7 @@
     </section>
 
     <section class="slide" data-markdown>
-        <script type="text/template">
+      <script type="text/template">
           ## Reinventing the Wheel, why?
 
           * Sometimes this is a great way to learn
@@ -306,7 +314,7 @@
           <!-- .element: class="delayed" -->
           https://twitter.com/BunkyFob/status/1059960013689516032
         </script>
-    </section>  
+    </section>
 
     <section class="slide" data-markdown>
       <script type="text/template">
@@ -346,12 +354,14 @@
         <li><i class="fa fa-envelope"></i><a href="mailto:codependentcodr@gmail.com">codependentcodr@gmail.com</a></li>
         <li><i class="fa fa-desktop"></i><a href="https://www.codependentcodr.com/">www.codependentcodr.com</a></li>
         <li><i class="fa fa-twitter"></i><a href="http://twitter.com/">@codependentcodr</a></li>
-        <li><i class="fa fa-github"></i><a href="https://github.com/pzelnip/VanPyLambadaPresentation">Slides & Code - https://bit.ly/2S5Wibc</a></li>
+        <li><i class="fa fa-github"></i><a href="https://github.com/pzelnip/VanPyLambadaPresentation">Slides & Code -
+            https://bit.ly/2S5Wibc</a></li>
       </ul>
 
-      <p class="attribution">Slide presentation based upon a <a href="https://github.com/ladieslearningcode/llc-intro-to-python">slide deck from Ladies Learning Code</a>, 
+      <p class="attribution">Slide presentation based upon a <a href="https://github.com/ladieslearningcode/llc-intro-to-python">slide
+          deck from Ladies Learning Code</a>,
         <br>which was based on
-         <a href="https://github.com/LeaVerou/csss">Lea Verou&rsquo;s CSS-based SlideShow System</a> and <a href="http://lab.hakim.se/reveal-js/">reveal.js</a>.</p>
+        <a href="https://github.com/LeaVerou/csss">Lea Verou&rsquo;s CSS-based SlideShow System</a> and <a href="http://lab.hakim.se/reveal-js/">reveal.js</a>.</p>
     </section>
 
 
@@ -360,8 +370,11 @@
   </main><!-- cls main section -->
 
   <footer>
-    <p class="license"><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" src="framework/img/cc-by-nc.svg" /></a> by <a prefix="cc: http://creativecommons.org/ns#" href="http://www.codependentcodr.com" property="cc:attributionName" rel="cc:attributionURL">Adam Parkin</a>  -- <a href="https://bit.ly/2S5Wibc">https://bit.ly/2S5Wibc</a></p>
-    <p class="instructions">Use the left <i class="fa fa-arrow-left"></i> and right <i class="fa fa-arrow-right"></i> arrow keys to navigate</p>
+    <p class="license"><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License"
+          src="framework/img/cc-by-nc.svg" /></a> by <a prefix="cc: http://creativecommons.org/ns#" href="http://www.codependentcodr.com"
+        property="cc:attributionName" rel="cc:attributionURL">Adam Parkin</a> -- <a href="https://bit.ly/2S5Wibc">https://bit.ly/2S5Wibc</a></p>
+    <p class="instructions">Use the left <i class="fa fa-arrow-left"></i> and right <i class="fa fa-arrow-right"></i>
+      arrow keys to navigate</p>
   </footer>
 
   <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -384,14 +397,15 @@
 
     // Grabs all the .snippet elements
     var snippets = document.querySelectorAll('.snippet');
-    for(var i=0; i<snippets.length; i++) {
+    for (var i = 0; i < snippets.length; i++) {
       new CSSSnippet(snippets[i]);
     }
 
     // Adds "edit me" note to editable code areas
-    jQuery(document).ready(function(){
+    jQuery(document).ready(function () {
       jQuery(".snippet").before("<span class=\"edit\">edit me</span>");
     });
   </script>
 </body>
+
 </html>

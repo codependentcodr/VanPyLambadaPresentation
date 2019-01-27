@@ -1,2 +1,6 @@
 jinja2
 lxml
+pytest
+pylint
+black
+pydocstyle
